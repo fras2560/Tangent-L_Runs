@@ -1,0 +1,23 @@
+cd ..
+cd 'customOutput'
+cd 'weights'
+
+map_data = csvread("MapWeightsAll.csv");
+bpref_data = csvread("BprefWeightsAll.csv");
+
+figure1 = figure;
+plot(map_data(:,1), map_data(:,2), "b", map_data(:,1), map_data(:,3), "r");
+title('MAP for various Math Weights');
+xlabel('Math Weight Ratio (math to text)');
+ylabel('MAP');
+legend("Relevant","Partially Relevant", "Location", "south", 'Orientation','horizontal');
+saveas(figure1, 'mapAll.png');
+
+
+plot(bpref_data(:,1), bpref_data(:,2), "b", bpref_data(:,1), bpref_data(:,3), "r");
+
+title('Bpref for various Math Weights');
+xlabel('Math Weight Ratio (math to text)');
+ylabel("Bpref");
+legend("Relevant","Partially Relevant", "Location", "south", 'Orientation','horizontal');
+saveas(figure1, 'bprefAll.png');

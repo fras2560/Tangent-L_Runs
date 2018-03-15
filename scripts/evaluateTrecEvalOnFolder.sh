@@ -39,6 +39,10 @@ do
 		then
 			evaluate_folder "$workingDir/$d" "$outputDir/$d" "$judgementDir/NTCIR12-MathWiki-main_Relevant.dat" "Relevant"
 			evaluate_folder "$workingDir/$d" "$outputDir/$d" "$judgementDir/NTCIR12-MathWiki-main_PartiallyRelevant.dat" "PartiallyRelevant"
+		elif [ $d == "finalEvaluation" ];
+		then
+			evaluate_folder "$workingDir/$d" "$outputDir/$d" "$judgementDir/ArXiv_Judgements_PartialRelevant.dat" "PartiallyRelevant"
+			evaluate_folder "$workingDir/$d" "$outputDir/$d" "$judgementDir/ArXiv_Judgements_Relevant.dat" "Relevant"
 		fi 
 		echo "Creating output directory: $outputDir/$d"
 		

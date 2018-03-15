@@ -1,0 +1,39 @@
+cd ..
+cd 'customOutput'
+cd 'weights'
+figure1 = figure;
+map_data = csvread(strcat("MapWeights1.csv"));
+max(map_data(:,2)) - map_data(100,2);
+[M,I] = max(map_data(:,2));
+plot(map_data(:,1), map_data(:,2), "b")
+hold on;
+colors = ["b","b","b","c","c","m","k","c","c","k","k","c","k","c","b","r","c","g","g","c","b","c","b","c","r","m","m","r","c","m"];
+
+for n = 2:30
+	map_data = csvread(strcat("MapWeights", int2str(n), '.csv'));
+	plot(map_data(:,1), map_data(:,2), colors(n))
+	max(map_data(:,2)) - map_data(100,2);
+	[M,I] = max(map_data(:,2));
+end
+hold off;
+title('MAP for various Math Weights');
+xlabel('Math Weight Ratio (math to text)');
+ylabel('MAP');
+saveas(figure1, 'mapByQuery.png');
+
+bpref_data = csvread(strcat("BprefWeights1.csv"));
+[M,I] = max(bpref_data(:,2));
+max(bpref_data(:,2)) - bpref_data(100,2)
+plot(bpref_data(:,1), bpref_data(:,2), "b")
+hold on;
+for n = 2:30
+	bpref_data = csvread(strcat("BprefWeights", int2str(n), '.csv'));
+	[M,I] = max(bpref_data(:,2));
+	max(bpref_data(:,2)) - bpref_data(100,2)
+	plot(bpref_data(:,1), bpref_data(:,2), colors(n))
+end
+hold off;
+title('Bpref for various Math Weights');
+xlabel('Math Weight Ratio (math to text)');
+ylabel("Bpref");
+saveas(figure1, 'bprefByQuery.png');
